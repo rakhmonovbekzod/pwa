@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button, Input } from '../../../components/Form';
 import { post } from '../../../services/helpers/api';
-import { PaymentValidation, initialValues } from "./validations";
+import { PaymentValidation, initialValues } from "../../../services/helpers/validations";
 import { formatNumber, isLetter } from '../../../services/utils';
 
 const MyForm = ({ paymentType, closeModal }) => {
