@@ -8,10 +8,12 @@ const Radio = ({ size, className, id, label, labelfor, ...rest }) => {
         `${size}`,
         className
     )
-    return <div>
-        <input className={classes} type="radio" id={id} {...rest} />
-        <label className="ml-10" htmlFor={labelfor} >{label}</label>
-    </div>
+    return <>
+        <div className='radio_wrapper'>
+            <input className={classes} type="radio" id={id} {...rest} />
+            <label className="ml-10" htmlFor={labelfor} >{label}</label>
+        </div>
+    </>
 }
 
 Radio.propTypes = {

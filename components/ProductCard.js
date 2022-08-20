@@ -20,7 +20,7 @@ const ProductCard = ({ name, description, price, oldPrice, img, onSelect, id, si
                     {oldPrice ? <span className='mr-20'><del>{formatNumber(oldPrice)}</del></span> : ''}
                     <span >{formatNumber(price)}</span>
                 </div>
-                <Button className='btn btn-primary mt-10' text={t('sotib oish')} onClick={(e) => {
+                <Button className='btn btn-primary mt-10' text={t('add to cart')} onClick={(e) => {
                     e.preventDefault();
                     onSelect(e)
                 }} />

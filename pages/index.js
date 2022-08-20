@@ -1,25 +1,31 @@
 import Link from "next/link";
-import { useRef } from "react";
 import { connect, useSelector } from 'react-redux';
 import Loader from "../components/Loader";
 import ProductCard from "../components/ProductCard";
+import { setselectProducts } from "../redux/slices/products/reducers";
 
 
 function Home(props) {
 
-  const selector = useSelector(state => state.products)
+  const { loading, setSelectProducts } = props;
+  const all_products = useSelector(state => state.products.all_products)
+
+  const selectProducts = (item) => {
+    setSelectProducts(item)
+  }
+
 
   return (
     <div className="home mt-50 mb-50">
-      <div className="b-cart">Cart (<span className="b-cart__count">0</span>)</div>
+
       <div className="container">
         <div className="row">
           {
-            props.loading ? <div className="d-flex justify-content-center">
+            loading ? <div className="d-flex justify-content-center">
               <Loader />
             </div> : <>
               {
-                selector.all_products.length ? selector.all_products.map((item, index) => {
+                all_products.length ? all_products.map((item, index) => {
                   return <>
                     <div className="col-3" key={index}>
                       <Link href={`/product/${item.id}`}  >
@@ -31,6 +37,7 @@ function Home(props) {
                             price={item.price}
                             oldPrice={item.oldPrice}
                             img={item.img}
+                            onSelect={() => selectProducts(item)}
                           />
                         </a>
                       </Link>
@@ -47,10 +54,17 @@ function Home(props) {
 }
 
 const mapStateToProps = (state) => ({
-  loading: state.products.loading
+  loading: state.products.loading,
+  selectedProducts: state.products.selectedProducts
 })
 
-export default connect(mapStateToProps, null)(Home)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSelectProducts: (item) => dispatch(setselectProducts(item))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
 
 

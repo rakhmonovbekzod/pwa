@@ -3,7 +3,9 @@ import classnames from "classnames";
 import { Modal } from 'react-bootstrap'
 import { Button } from './Form';
 
-const Mymodal = ({ children, title, handleClose, show, className }) => {
+const Mymodal = (props) => {
+
+    const { children, title, handleClose, show, className } = props;
 
     const classes = classnames(
         'custom_modal',

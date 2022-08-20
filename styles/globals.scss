@@ -55,6 +55,9 @@ a {
 }
 
 .b-cart {
+  position: fixed;
+  left: 20px;
+  top: 20px;
   width: 150px;
   background: #E74C3C;
   color: #fff;
@@ -69,5 +72,38 @@ a {
 
   &:hover {
     opacity: 0.8;
+  }
+}
+
+.language_select {
+  width: 200px;
+  cursor: pointer;
+}
+
+.custom_radio {
+  display: flex;
+  margin-bottom: 20px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-right: 45px;
+    cursor: pointer;
+
+    input {
+      width: 13px;
+    }
+
+    label {
+      margin-left: 0;
+    }
+  }
+}
+
+.radio_wrapper {
+  cursor: pointer;
+
+  * {
+    cursor: pointer;
   }
 }

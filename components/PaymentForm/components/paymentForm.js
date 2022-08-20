@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { Button, Input } from '../../../components/Form';
+import { Button, Input } from '../../Form';
 import { post } from '../../../services/helpers/api';
-import { PaymentValidation, initialValues } from "../../../services/helpers/validations";
-import { formatNumber, isLetter } from '../../../services/utils';
+import { PaymentValidation, initialValues } from "./validations";
+import { isLetter, formatNumber } from '../../../services/utils';
+import { useRouter } from 'next/router';
+import Loader from '../../Loader';
 
-const MyForm = ({ paymentType, closeModal }) => {
+const PaymentForm = ({ paymentType, setBack }) => {
     const { t } = useTranslation()
     const [success, setSuccess] = useState(false)
     const [message, setMessage] = useState('')
     const [show, setShow] = useState(false)
+    const [isSubmitting, setsubmitting] = useState(false)
+    const history = useRouter()
 
+    const back_to_step = () => {
+        setBack()
+    }
 
     const getValues = (e, item, setFieldValue) => {
         let value = e.target.value.slice(-1)
@@ -30,6 +37,7 @@ const MyForm = ({ paymentType, closeModal }) => {
 
     const payForProduct = (data) => {
         post('/pay', data).then(res => {
+            setsubmitting(true)
             setShow(true)
             setTimeout(() => {
                 setShow(false)
@@ -38,7 +46,7 @@ const MyForm = ({ paymentType, closeModal }) => {
                 setMessage('It is success')
                 setSuccess(true)
                 setTimeout(() => {
-                    closeModal()
+                    history.push("/")
                 }, 2000);
             }
             else {
@@ -70,28 +78,34 @@ const MyForm = ({ paymentType, closeModal }) => {
                 resetForm()
             }}
         >
-            {({ isSubmitting, values, setFieldValue }) => {
-                return <Form > {
-                    Object.keys(initialValues[paymentType]).map((item, index) => (
-                        <Field
-                            maxLength={item == 'phone' ? '9' : false}
-                            key={index}
-                            placeholder={t(item)}
-                            name={item}
-                            component={Input}
-                            onChange={(e) => getValues(e, item, setFieldValue)}
-                            value={values[item] || ''}
-                        />
-                    ))
-                }
-                    <div className="d-flex justify-content-end">
-                        <Button className="btn btn-primary" htmlType="submit" text={isSubmitting ? '...loading' : t('submit')} />
-                    </div>
-                </Form>
+            {({ values, setFieldValue }) => {
+                return <>
+                    {
+                        isSubmitting ? <>
+                            <Loader />
+                        </> : <Form > {
+                            Object.keys(initialValues[paymentType]).map((item, index) => (
+                                <Field
+                                    maxLength={item == 'phone' ? '9' : false}
+                                    key={index}
+                                    placeholder={t(item)}
+                                    name={item}
+                                    component={Input}
+                                    onChange={(e) => getValues(e, item, setFieldValue)}
+                                    value={values[item] || ''}
+                                />
+                            ))
+                        }
+                            <div className="d-flex justify-content-end">
+                                <Button className="btn  btn-outline-secondary mr-30" onClick={back_to_step} type="button" text={t("back")} />
+                                <Button className="btn btn-primary" type="submit" text={t('submit')} />
+                            </div>
+                        </Form>
+                    }
+                </>
             }}
         </Formik >
     </>
 }
 
-
-export default MyForm;
+export default PaymentForm;

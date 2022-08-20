@@ -3,14 +3,14 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import XHR from "i18next-xhr-backend";
 import { initReactI18next } from 'react-i18next';
 import uzbek from './uz.js'
-import russian from './ru.js'
+import english from './eng.js'
 
 i18n.use(XHR)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
         debug: true,
-        lng: "ru",
+        lng: "uz",
         fallbackLng: "uz",
         keySeparator: false,
         interpolation: {
@@ -20,8 +20,8 @@ i18n.use(XHR)
             uz: {
                 translation: uzbek
             },
-            ru: {
-                translation: russian
+            eng: {
+                translation: english
             }
         },
         react: {
