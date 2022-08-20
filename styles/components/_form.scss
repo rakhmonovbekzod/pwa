@@ -1,0 +1,17 @@
+.custom_input_wrapper {
+    position: relative;
+    margin-bottom: 35px;
+
+    .form_input {
+        &.error {
+            border: 1px solid red;
+        }
+    }
+
+    .error_block {
+        position: absolute;
+        bottom: -30px;
+        color: red;
+        font-size: 13px;
+    }
+}

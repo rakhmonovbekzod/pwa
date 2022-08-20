@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 0 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-grow: 1;
+    cursor: pointer;
+
+    &.default {
+        width: 250px;
+    }
+
+    &_img {
+        width: 250px;
+        object-fit: cover;
+        height: 150px;
+    }
+
+    &_body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        flex: 1;
+    }
+}
