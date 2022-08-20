@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import styles from "./Product.module.scss";
 import { Button, Radio } from '../../components/Form';
 import Modal from '../../components/Modal';
-import MyForm from './components/form';
+import MyForm from './components/Form';
 import { useTranslation } from 'react-i18next';
 import Loader from '../../components/Loader';
 
