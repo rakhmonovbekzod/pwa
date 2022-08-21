@@ -16,6 +16,7 @@ const get = makeActionDecorator(function (url) {
     return instance({
         method: 'GET',
         url,
+        mode: 'no-cors',
         headers: {
         },
     })
@@ -26,6 +27,7 @@ const post = makeActionDecorator(function (url, payload) {
 
     return instance({
         method: 'POST',
+        mode: 'no-cors',
         url,
         data: payload,
         auth: {
