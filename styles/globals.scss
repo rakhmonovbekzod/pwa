@@ -38,6 +38,7 @@ a {
   transform: translatex(250px);
   font-size: 18px;
   transition: all ease-in-out 0.3s;
+  z-index: 10002;
 
   &.danger {
     background-color: rgb(255, 64, 64);
@@ -68,6 +69,7 @@ a {
   border-bottom: 3px solid #d83d2d;
   border-radius: 4px;
   cursor: pointer;
+  z-index: 888;
 
 
   &:hover {
@@ -105,5 +107,52 @@ a {
 
   * {
     cursor: pointer;
+  }
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(200, 185, 185);
+  opacity: 0.4;
+}
+.spinner-border {
+  position: relative;
+  z-index: 1000;
+}
+.layout_body {
+  min-height: calc(100vh - 140px);
+  h1 {
+    font-size: 25px;
+    color: #000;
+    position: relative;
+    z-index: 10001;
+  }
+}
+@media only screen and (max-width:767px) {
+  .container {
+    width: 100vw;
+    padding: 10px;
+  }
+  .card_link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .b-cart {
+    bottom: 0;
+    top: unset;
+    left: 0;
+    z-index: 1000;
+  }
+  .order {
+    order: -1;
   }
 }

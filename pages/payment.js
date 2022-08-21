@@ -1,31 +1,27 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import PaymentForm from "../components/PaymentForm";
+import { parser } from "../services/utils";
 
 const Payment = () => {
     const router = useRouter()
-    const [user,setUser] = useState([])
     const { query } = router;
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json()).then(d => setUser(d))
-        
-    },[])
-
+    
+    const checkisArray = () => {
+        if (query.items) {
+            if (parser(query.items) instanceof Array) {
+                return parser(query.items)
+             }else {
+                 return Array(parser(query.items))
+             }
+        }else {
+            return []
+        }
+    }
     return <>
         <div className="container">
-            <div className="mt-40">
-                <PaymentForm product={query} />
+            <div className="mt-40 mb-40">
+                <PaymentForm product={checkisArray()} />
             </div>
-            {
-                user.length && user.map((item,index) => {
-                    return <>
-                       <div>
-                          <h2>{item.name}</h2>
-                          <p>{item.email}</p>
-                       </div>
-                    </>
-                })
-            }
         </div>
     </>
 }

@@ -1,6 +1,6 @@
 .custom_input_wrapper {
     position: relative;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 
     .form_input {
         &.error {
@@ -12,6 +12,6 @@
         position: absolute;
         bottom: -30px;
         color: red;
-        font-size: 13px;
+        font-size: 11px;
     }
 }

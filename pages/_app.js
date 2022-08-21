@@ -45,11 +45,18 @@ function MyApp({ Component, pageProps, selectedProducts }) {
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
         <Layout>
-          <div className="b-cart" onClick={openModal}>Cart (<span className="b-cart__count">{selectedProducts.length}</span>)</div>
+          <div className="b-cart" onClick={openModal}>Cart (<span className="b-cart__count">{selectedProducts.length}</span>)
+          </div>
           <Modal show={showModal} handleClose={closeModal}>
-            <Cart products={selectedProducts} onDelete={(id) => deleteCart(id)} />
+            <Cart
+              products={selectedProducts}
+              onDelete={(id) => deleteCart(id)}
+              closeModal={() => setShowModal(false)}
+            />
           </Modal>
-          <Component {...pageProps} />
+          <div className="layout_body">
+            <Component {...pageProps} />
+          </div>
         </Layout>
       </I18nextProvider>
     </Provider>

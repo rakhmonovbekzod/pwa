@@ -6,7 +6,7 @@
     "start_url": "/",
     "name": "Goodzone",
     "short_name": "Goodzone",
-    "description": "online shopping cart",
+    "description": "online shopping cart app",
     "icons": [
         {
             "src": "/icon-192x192.png",

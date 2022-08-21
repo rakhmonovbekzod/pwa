@@ -44,5 +44,15 @@ const checkNumber = (value) => {
         return null
     }
 }
+const parser = (val) => {
+    if (val) {
+        return JSON.parse(val)
+    }
+}
+const maketJsonSrting = (val) => {
+  if (val) {
+    return JSON.stringify(val)
+  }
+}
 
-export { formatNumber, checkNumber, isLetter }
+export { formatNumber, checkNumber, isLetter,parser,maketJsonSrting }

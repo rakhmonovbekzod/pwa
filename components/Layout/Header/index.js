@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { Button, Input } from "../../Form";
+import { Button, Input } from "../../FormComponents";
 
 const Header = () => {
 
@@ -14,7 +14,9 @@ const Header = () => {
         <header className="header navbar-expand-lg navbar-light bg-light" >
             <div className="container ">
                 <nav className="navbar  ">
-                    <a className="navbar-brand" href="#">{t('Navbar')}</a>
+                    <Link href="/">
+                        <a className="nav-link" >{t('Home')}</a>
+                    </Link>
                     <Button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </Button>
@@ -23,7 +25,7 @@ const Header = () => {
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
                                 <Link href="/">
-                                    <a className="nav-link" >{t('Home')} <span className="sr-only">{t('current')}</span></a>
+                                    <a className="nav-link" >{t('Home')}</a>
                                 </Link>
                             </li>
                             <li className="nav-item">
@@ -47,8 +49,8 @@ const Header = () => {
                             </li>
 
                         </ul>
-                        <select className="form-control language_select" onChange={changeLanguage}>
-                            <option value="uz" selected>Uzbek</option>
+                        <select defaultValue="uz" className="form-control language_select" onChange={changeLanguage}>
+                            <option value="uz" >Uzbek</option>
                             <option value="eng">English</option>
                         </select>
                         <form className="d-flex form-inline my-2 my-lg-0" onSubmit={(e) => e.preventDefault()}>

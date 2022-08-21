@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { Button, Input } from '../../Form';
+import { Button, Input } from '../../FormComponents';
 import { post } from '../../../services/helpers/api';
 import { PaymentValidation, initialValues } from "./validations";
 import { isLetter, formatNumber } from '../../../services/utils';
@@ -83,25 +83,34 @@ const PaymentForm = ({ paymentType, setBack }) => {
                     {
                         isSubmitting ? <>
                             <Loader />
-                        </> : <Form > {
-                            Object.keys(initialValues[paymentType]).map((item, index) => (
-                                <Field
-                                    maxLength={item == 'phone' ? '9' : false}
-                                    key={index}
-                                    placeholder={t(item)}
-                                    name={item}
-                                    component={Input}
-                                    onChange={(e) => getValues(e, item, setFieldValue)}
-                                    value={values[item] || ''}
-                                />
-                            ))
-                        }
-                            <div className="d-flex justify-content-end">
-                                <Button className="btn  btn-outline-secondary mr-30" onClick={back_to_step} type="button" text={t("back")} />
-                                <Button className="btn btn-primary" type="submit" text={t('submit')} />
-                            </div>
-                        </Form>
+                        </> : ''
                     }
+                    <Form > {
+                        Object.keys(initialValues[paymentType]).map((item, index) => (
+                            <Field
+                                maxLength={item == 'phone' ? '9' : false}
+                                key={index}
+                                placeholder={t(item)}
+                                name={item}
+                                component={Input}
+                                onChange={(e) => getValues(e, item, setFieldValue)}
+                                value={values[item] || ''}
+                            />
+                        ))
+                    }
+                        <div className="d-flex justify-content-end">
+                            <Button
+                                className="btn  btn-outline-secondary mr-30" onClick={back_to_step}
+                                type="button"
+                                text={t("back")}
+                            />
+                            <Button
+                                className="btn btn-primary"
+                                type="submit"
+                                text={t('submit')}
+                            />
+                        </div>
+                    </Form>
                 </>
             }}
         </Formik >

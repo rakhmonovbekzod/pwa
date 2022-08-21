@@ -1,10 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
-    static async getInitialProps(ctx) {
-        const initialProps = await Document.getInitialProps(ctx)
-        return { ...initialProps }
-    }
 
     render() {
         return (
@@ -12,6 +8,7 @@ class MyDocument extends Document {
                 <Head >
                     <link rel="manifest" href="/manifest.json" />
                     <link rel="rel" href="/favicon.ico" />
+                    <link rel="theme-color" content="#fff" />
                 </Head>
                 <body>
                     <Main />

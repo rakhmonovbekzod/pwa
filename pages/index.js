@@ -19,17 +19,18 @@ function Home(props) {
     <div className="home mt-50 mb-50">
 
       <div className="container">
-        <div className="row">
+        <div className="row  ">
           {
             loading ? <div className="d-flex justify-content-center">
               <Loader />
-            </div> : <>
-              {
-                all_products.length ? all_products.map((item, index) => {
+            </div> : <></>
+          }
+          {
+               all_products.map((item, index) => {
                   return <>
-                    <div className="col-3" key={index}>
+                    <div className="col-xl-3 col-md-12 justify-self-md-center " key={index}>
                       <Link href={`/product/${item.id}`}  >
-                        <a >
+                        <a className="card_link" >
                           <ProductCard
                             id={item.id}
                             name={item.brand}
@@ -43,10 +44,8 @@ function Home(props) {
                       </Link>
                     </div>
                   </>
-                }) : ''
+                }) 
               }
-            </>
-          }
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classnames from "classnames";
 import { Modal } from 'react-bootstrap'
-import { Button } from './Form';
+import { Button } from './FormComponents';
 
 const Mymodal = (props) => {
 
@@ -20,7 +20,11 @@ const Mymodal = (props) => {
             </Modal.Header>
             <Modal.Body>{children}</Modal.Body>
             <Modal.Footer>
-                <Button className="btn btn-secondary" onClick={handleClose} text="Close" />
+                <Button
+                    className="btn btn-secondary"
+                    onClick={handleClose}
+                    text="Close"
+                />
             </Modal.Footer>
         </Modal>
     </>

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import PropTypes from 'prop-types';
-import {  Radio } from "../../Form";
+import {  Radio } from "../../FormComponents";
 import { useTranslation } from "react-i18next";
 
 const PaymentTypes = ({ setPayment_type }) => {

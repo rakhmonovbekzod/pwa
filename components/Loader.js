@@ -1,7 +1,11 @@
 import Spinner from 'react-bootstrap/Spinner';
 
 const Loader = () => {
-    return <Spinner animation="border" variant="danger" />;
+    return <>
+        <div className='loader'>
+            <Spinner animation="border" variant="danger" />
+        </div>
+    </>;
 }
 
 export default Loader;
