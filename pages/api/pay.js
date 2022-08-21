@@ -3,7 +3,7 @@ const password = "pwd"
 const user = "usr"
 const payment = ["payme", "click", "zoodpay"]
 const min = [100, 500, 50000]
-export default await function handler(req, res) {
+export default async function handler(req, res) {
     await NextCors(req, res, {
         methods: ['POST'],
         origin: '*',
@@ -40,7 +40,7 @@ export default await function handler(req, res) {
     await NextCors(req, res, {
         methods: ['POST'],
         origin: '*',
-        optionsSuccessStatus: 400,
+        optionsSuccessStatus: 200,
     })
     res.status(200).json({ 
         success: true, error: ""
