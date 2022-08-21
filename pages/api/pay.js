@@ -7,13 +7,18 @@ export default await function handler(req, res) {
     await NextCors(req, res, {
         methods: ['POST'],
         origin: '*',
-        optionsSuccessStatus: 200,
+        optionsErrorStatus: 401,
     })
     if (!checkAuth(req.headers.authorization)){
         return res.status(401).json({
             success: false, error: "Unauthorized"
         })
     }
+    await NextCors(req, res, {
+        methods: ['POST'],
+        origin: '*',
+        optionsErrorStatus: 400,
+    })
     const data = req.body
     if (!checkData(data)){
         
@@ -22,11 +27,21 @@ export default await function handler(req, res) {
             success: false, error: "Bad Request"
         })
     }
+    await NextCors(req, res, {
+        methods: ['POST'],
+        origin: '*',
+        optionsErrorStatus: 400,
+    })
     if (!checkMin(data.payment, data.amount)) {
         return res.status(400).json({
             success: false, error: "Bad Amount"
         })
     }
+    await NextCors(req, res, {
+        methods: ['POST'],
+        origin: '*',
+        optionsSuccessStatus: 400,
+    })
     res.status(200).json({ 
         success: true, error: ""
     })
