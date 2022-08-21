@@ -2,8 +2,9 @@ const password = "pwd"
 const user = "usr"
 const payment = ["payme", "click", "zoodpay"]
 const min = [100, 500, 50000]
-export default function handler(req, res) {
+export default function handler(req, res,next) {
     res.header("Access-Control-Allow-Origin", "*")
+    next()
     if (!checkAuth(req.headers.authorization)){
         return res.status(401).json({
             success: false, error: "Unauthorized"
