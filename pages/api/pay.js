@@ -3,6 +3,7 @@ const user = "usr"
 const payment = ["payme", "click", "zoodpay"]
 const min = [100, 500, 50000]
 export default function handler(req, res) {
+    res.header("Access-Control-Allow-Origin", "*")
     if (!checkAuth(req.headers.authorization)){
         return res.status(401).json({
             success: false, error: "Unauthorized"
