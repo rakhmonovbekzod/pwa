@@ -1,8 +1,14 @@
+import NextCors from 'nextjs-cors';
 const password = "pwd"
 const user = "usr"
 const payment = ["payme", "click", "zoodpay"]
 const min = [100, 500, 50000]
-export default function handler(req, res) {
+export default await function handler(req, res) {
+    await NextCors(req, res, {
+        methods: ['POST'],
+        origin: '*',
+        optionsSuccessStatus: 200,
+    })
     if (!checkAuth(req.headers.authorization)){
         return res.status(401).json({
             success: false, error: "Unauthorized"

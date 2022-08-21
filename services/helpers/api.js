@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { store } from "../../redux/index";
 
 
 const instance = axios.create({
@@ -24,15 +25,16 @@ const get = makeActionDecorator(function (url) {
 
 
 const post = makeActionDecorator(function (url, payload) {
-
+    const username = store.getState().auth.user;
+    const password = store.getState().auth.password
     return instance({
         method: 'POST',
         mode: 'no-cors',
         url,
         data: payload,
         auth: {
-            username: "usr",
-            password: "pwd"
+            username,
+            password
         }
     })
 });
